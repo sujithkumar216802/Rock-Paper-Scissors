@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.sujithkumar.rockpaperscissors.SplashScreen"
+        android:label="SplashScreen" >
+        <action
+            android:id="@+id/action_splashScreen_to_options2"
+            app:destination="@id/options2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gamePlay"
+        android:name="com.sujithkumar.rockpaperscissors.GamePlay"
+        android:label="GamePlay" >
+        <action
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_gamePlay_to_gameover"
+            app:destination="@id/gameover"
+            app:popUpTo="@id/options2"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/input"
+        android:name="com.sujithkumar.rockpaperscissors.Input"
+        android:label="Input" >
+        <action
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_input_to_gamePlay"
+            app:destination="@id/gamePlay"
+            app:popUpTo="@id/options2"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/options2"
+        android:name="com.sujithkumar.rockpaperscissors.Options"
+        android:label="Options" >
+        <action
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_options2_to_input"
+            app:destination="@id/input" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameover"
+        android:name="com.sujithkumar.rockpaperscissors.gameover"
+        android:label="gameover" >
+        <action
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_gameover_to_input"
+            app:destination="@id/input"
+            app:popUpTo="@id/options2"
+            app:popUpToInclusive="false" />
+        <action
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_gameover_to_options2"
+            app:destination="@id/options2"
+            app:popUpTo="@id/options2"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

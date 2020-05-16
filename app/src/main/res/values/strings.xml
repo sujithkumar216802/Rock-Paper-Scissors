@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Rock Paper  Scissors</string>
+    <string name="spider_task_1">Spider Task 1</string>
+    <string name="by_n_s_sujith_kumar_n_108119126">-by \n S Sujith Kumar \n 108119126</string>
+    <string name="reload">reload</string>
+    <string name="menu">MENU</string>
+    <string name="next">NEXT</string>
+    <string name="name">Name</string>
+    <string name="rounds">Rounds</string>
+    <string name="single_player">SINGLE PLAYER</string>
+    <string name="dual_player">DUAL PLAYER</string>
+    <string name="next_round">NEXT ROUND</string>
+</resources>
