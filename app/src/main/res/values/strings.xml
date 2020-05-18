@@ -10,4 +10,8 @@
     <string name="single_player">SINGLE PLAYER</string>
     <string name="dual_player">DUAL PLAYER</string>
     <string name="next_round">NEXT ROUND</string>
+    <string name="results">Results</string>
+    <string name="eg_sam">Eg. Sam</string>
+
+
 </resources>

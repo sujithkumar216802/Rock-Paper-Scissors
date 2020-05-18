@@ -3,7 +3,6 @@ package com.sujithkumar.rockpaperscissors;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import androidx.navigation.Navigation;
 import java.util.Random;
 
 public class GamePlay extends Fragment implements View.OnClickListener {
+    private static boolean gameover=false;
     private Button next;
     private ConstraintLayout left, right;
     private Random rand = new Random();
@@ -81,17 +81,22 @@ public class GamePlay extends Fragment implements View.OnClickListener {
         if (rep.getCurrentuser() == 2 && !rep.isComputer() || rep.getCurrentuser() == 1)
             switch (v.getId()) {
                 case R.id.next:
-                    rep.setCurrentroundover(false);
-                    rock.setVisibility(View.VISIBLE);
-                    paper.setVisibility(View.VISIBLE);
-                    scissors.setVisibility(View.VISIBLE);
-                    current.setVisibility(View.VISIBLE);
-                    player1.setImageResource(R.drawable.questionmark);
-                    player2.setImageResource(R.drawable.questionmark);
-                    rep.setCorrect(0);
-                    left.setBackgroundColor(Color.TRANSPARENT);
-                    right.setBackgroundColor(Color.TRANSPARENT);
-                    draw();
+                    if(gameover)
+                        nav.navigate(R.id.action_gamePlay_to_gameover);
+                    else{
+
+                        rep.setCurrentroundover(false);
+                        rock.setVisibility(View.VISIBLE);
+                        paper.setVisibility(View.VISIBLE);
+                        scissors.setVisibility(View.VISIBLE);
+                        current.setVisibility(View.VISIBLE);
+                        player1.setImageResource(R.drawable.questionmark);
+                        player2.setImageResource(R.drawable.questionmark);
+                        rep.setCorrect(0);
+                        left.setBackgroundColor(Color.TRANSPARENT);
+                        right.setBackgroundColor(Color.TRANSPARENT);
+                        draw();
+                    }
                     break;
                 case R.id.rock:
                     if (rep.getCurrentuser() == 1) {
@@ -164,19 +169,17 @@ public class GamePlay extends Fragment implements View.OnClickListener {
 
 
     void draw() {
+
         player1score.setText(rep.getName1() + "\n" + rep.getScore1());
         player2score.setText(rep.getName2() + "\n" + rep.getScore2());
         if (rep.isComputer())
             player2score.setText("Computer\n" + rep.getScore2());
-
         rounds.setText(rep.getCurrentround() + "/" + rep.getRound());
-
         if (rep.getCurrentuser() == 1) {
             current.setText(rep.getName1() + "'s Turn :");
         } else {
             current.setText(rep.getName2() + "'s Turn :");
         }
-
         if (rep.isCurrentroundover()) {
             player1.startAnimation(shrink);
             player2.startAnimation(shrink);
@@ -219,11 +222,12 @@ public class GamePlay extends Fragment implements View.OnClickListener {
                     break;
             }
             next.setVisibility(View.VISIBLE);
+            if(gameover)
+                next.setText(R.string.results);
             rock.setVisibility(View.GONE);
             paper.setVisibility(View.GONE);
             scissors.setVisibility(View.GONE);
             current.setVisibility(View.GONE);
-
         }
 
 
@@ -232,18 +236,9 @@ public class GamePlay extends Fragment implements View.OnClickListener {
 
     void calculate() {
         rep.setCurrentuser(1);
-        if (rep.getPlayer2option() == rep.getPlayer1option()) {
+        if (rep.getPlayer2option() == rep.getPlayer1option())
             rep.setCorrect(0);
-            draw();
-
-        } else {
-
-            if (rep.getCurrentround() != rep.getRound())
-                rep.setCurrentround(rep.getCurrentround() + 1);
-            else {
-                nav.navigate(R.id.action_gamePlay_to_gameover);
-            }
-
+        else
             switch (rep.getPlayer1option()) {
                 case 1:
                     if (rep.getPlayer2option() == 3) {
@@ -276,6 +271,12 @@ public class GamePlay extends Fragment implements View.OnClickListener {
                     break;
             }
 
+
+        if (rep.getCurrentround() != rep.getRound())
+            rep.setCurrentround(rep.getCurrentround() + 1);
+        else {
+            gameover=true;
+           // nav.navigate(R.id.action_gamePlay_to_gameover);
         }
         draw();
     }
