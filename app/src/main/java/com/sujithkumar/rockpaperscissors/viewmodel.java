@@ -5,7 +5,7 @@ import android.text.Editable;
 import androidx.lifecycle.ViewModel;
 
 public class viewmodel extends ViewModel {
-    private boolean computer=false,currentroundover=false;
+    private boolean computer=false,currentroundover=false,gameover=false;
     private int round,currentround,score1,score2,currentuser,player1option,player2option,correct,wrong;
     private Editable name1;
     private Editable name2;
@@ -113,5 +113,13 @@ public class viewmodel extends ViewModel {
 
     public void setWrong(int wrong) {
         this.wrong = wrong;
+    }
+
+    public boolean isGameover() {
+        return gameover;
+    }
+
+    public void setGameover(boolean gameover) {
+        this.gameover = gameover;
     }
 }

@@ -52,6 +52,7 @@ public class Input extends Fragment {
         rep.setScore2(0);
         rep.setCurrentuser(1);
         rep.setCurrentroundover(false);
+        rep.setGameover(false);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

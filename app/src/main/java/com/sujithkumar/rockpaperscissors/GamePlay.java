@@ -24,7 +24,6 @@ import androidx.navigation.Navigation;
 import java.util.Random;
 
 public class GamePlay extends Fragment implements View.OnClickListener {
-    private static boolean gameover=false;
     private Button next;
     private ConstraintLayout left, right;
     private Random rand = new Random();
@@ -81,7 +80,7 @@ public class GamePlay extends Fragment implements View.OnClickListener {
         if (rep.getCurrentuser() == 2 && !rep.isComputer() || rep.getCurrentuser() == 1)
             switch (v.getId()) {
                 case R.id.next:
-                    if(gameover)
+                    if(rep.isGameover())
                         nav.navigate(R.id.action_gamePlay_to_gameover);
                     else{
 
@@ -222,7 +221,7 @@ public class GamePlay extends Fragment implements View.OnClickListener {
                     break;
             }
             next.setVisibility(View.VISIBLE);
-            if(gameover)
+            if(rep.isGameover())
                 next.setText(R.string.results);
             rock.setVisibility(View.GONE);
             paper.setVisibility(View.GONE);
@@ -275,7 +274,7 @@ public class GamePlay extends Fragment implements View.OnClickListener {
         if (rep.getCurrentround() != rep.getRound())
             rep.setCurrentround(rep.getCurrentround() + 1);
         else {
-            gameover=true;
+            rep.setGameover(true);
            // nav.navigate(R.id.action_gamePlay_to_gameover);
         }
         draw();
